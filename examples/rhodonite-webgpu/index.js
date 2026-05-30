@@ -70,9 +70,25 @@ const load = async function () {
   const effect = await context.loadEffect('../effekseer/Resources/00_Basic/Laser01.efkefc');
   context.setProjectionPerspective(45, window.innerWidth / window.innerHeight, 0.1, 1000);
   context.setCameraLookAt(0, 14, 14, 0, 0, 0, 0, 1, 0);
+
+  // efkefc has no embedded audio; load the sound via Web Audio API
+  const audioCtx = new AudioContext();
+  let soundBuffer = null;
+  fetch('../effekseer/Resources/Sound/Laser.wav')
+    .then(r => r.arrayBuffer())
+    .then(buf => audioCtx.decodeAudioData(buf))
+    .then(decoded => { soundBuffer = decoded; })
+    .catch(() => {});
+
   setStatus('Click to play');
   document.addEventListener('click', async () => {
-    await context.resumeSound();
+    await audioCtx.resume();
+    if (soundBuffer) {
+      const src = audioCtx.createBufferSource();
+      src.buffer = soundBuffer;
+      src.connect(audioCtx.destination);
+      src.start();
+    }
     context.play(effect, 0, 0, 0);
     setStatus('Ready.');
   }, { once: true });
