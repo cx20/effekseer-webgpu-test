@@ -58,8 +58,17 @@ async function main() {
   });
 
   const effect = await context.loadEffect("../effekseer/Resources/00_Basic/Laser01.efkefc");
-  context.play(effect, 0, 0, 0);
-  setStatus("Ready.");
+  setStatus("Click to play");
+
+  let observer;
+  observer = scene.onPointerObservable.add(async (pointerInfo) => {
+    if (pointerInfo.type === BABYLON.PointerEventTypes.POINTERDOWN) {
+      scene.onPointerObservable.remove(observer);
+      await context.resumeSound();
+      context.play(effect, 0, 0, 0);
+      setStatus("Ready.");
+    }
+  });
 
   scene.onAfterRenderObservable.add(() => {
     const camera = scene.activeCamera;
