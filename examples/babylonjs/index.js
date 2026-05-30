@@ -35,9 +35,17 @@ function main() {
     );
 
     scene.registerAfterRender(() => {
+      const camera = scene.activeCamera;
+      const pos = camera.position;
+      const target = camera.target;
       context.update(1);
-      context.setProjectionMatrix(Array.from(scene.activeCamera.getProjectionMatrix().m));
-      context.setCameraMatrix(Array.from(scene.activeCamera.getViewMatrix().m));
+      context.setProjectionPerspective(
+        camera.fov * (180 / Math.PI),
+        canvas.width / canvas.height,
+        camera.minZ,
+        camera.maxZ
+      );
+      context.setCameraLookAt(pos.x, pos.y, -pos.z, target.x, target.y, -target.z, 0, 1, 0);
       context.draw();
     });
 

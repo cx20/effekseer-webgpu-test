@@ -17,7 +17,7 @@ function main() {
 
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
-  camera.position.set(0, 0, 20);
+  camera.position.set(0, 14, 14);
 
   const controls = new OrbitControls(camera, canvas);
   controls.target.set(0, 0, 0);
@@ -28,7 +28,7 @@ function main() {
   effekseer.initRuntime("../effekseer/effekseer-webgl.wasm", () => {
     const context = effekseer.createContext();
     context.init(gl);
-    context.setRestorationOfStatesFlag(false);
+    context.setRestorationOfStatesFlag(true);
 
     const effect = context.loadEffect(
       "../effekseer/Resources/Laser01.efk",
@@ -50,7 +50,6 @@ function main() {
       context.setProjectionMatrix(Array.from(camera.projectionMatrix.elements));
       context.setCameraMatrix(Array.from(camera.matrixWorldInverse.elements));
       context.draw();
-      renderer.resetState();
     }
 
     animate();

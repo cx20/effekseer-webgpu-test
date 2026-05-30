@@ -60,7 +60,7 @@ async function main() {
   const effect = await context.loadEffect("../effekseer/Resources/00_Basic/Laser01.efkefc");
   context.play(effect, 0, 0, 0);
   context.setProjectionPerspective(45, canvas.width / canvas.height, 1, 1000);
-  context.setCameraLookAt(0, 0, 20, 0, 0, 0);
+  context.setCameraLookAt(0, 14, 14, 0, 0, 0);
   setStatus("Ready.");
 
   window.addEventListener("resize", () => {
