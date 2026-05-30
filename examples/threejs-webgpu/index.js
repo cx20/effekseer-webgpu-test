@@ -64,8 +64,12 @@ async function main() {
   });
 
   const effect = await context.loadEffect("../effekseer/Resources/00_Basic/Laser01.efkefc");
-  context.play(effect, 0, 0, 0);
-  setStatus("Ready.");
+  setStatus("Click to play");
+  document.addEventListener("click", async () => {
+    await context.resumeSound();
+    context.play(effect, 0, 0, 0);
+    setStatus("Ready.");
+  }, { once: true });
 
   function animate() {
     requestAnimationFrame(animate);

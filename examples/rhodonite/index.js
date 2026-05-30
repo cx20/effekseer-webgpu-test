@@ -45,8 +45,13 @@ const load = async function () {
         '../effekseer/Resources/Laser01.efk',
         1.0,
         () => {
-          effekseerContext.play(effect, 0, 0, 0);
-          setStatus('Ready.');
+          setStatus('Click to play');
+          document.addEventListener('click', () => {
+            const audioCtx = window.AL?.currentCtx?.audioCtx ?? window.AL?.currentCtx?.ctx;
+            if (audioCtx?.state !== 'running') audioCtx?.resume();
+            effekseerContext.play(effect, 0, 0, 0);
+            setStatus('Ready.');
+          }, { once: true });
           resolve();
         },
         (message, url) => {

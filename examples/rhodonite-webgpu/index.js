@@ -68,10 +68,14 @@ const load = async function () {
   });
 
   const effect = await context.loadEffect('../effekseer/Resources/00_Basic/Laser01.efkefc');
-  context.play(effect, 0, 0, 0);
   context.setProjectionPerspective(45, window.innerWidth / window.innerHeight, 0.1, 1000);
   context.setCameraLookAt(0, 14, 14, 0, 0, 0, 0, 1, 0);
-  setStatus('Ready.');
+  setStatus('Click to play');
+  document.addEventListener('click', async () => {
+    await context.resumeSound();
+    context.play(effect, 0, 0, 0);
+    setStatus('Ready.');
+  }, { once: true });
 
   window.addEventListener('resize', () => {
     resizeEffekseerCanvas(context);
