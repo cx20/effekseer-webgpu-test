@@ -37,8 +37,13 @@ function main() {
       "../effekseer/Resources/Laser01.efk",
       1.0,
       () => {
-        context.play(effect, 0, 0, 0);
-        setStatus("Ready.");
+        setStatus("Click to play");
+        document.addEventListener("click", () => {
+          const audioCtx = window.AL?.currentCtx?.audioCtx ?? window.AL?.currentCtx?.ctx;
+          if (audioCtx?.state !== "running") audioCtx?.resume();
+          context.play(effect, 0, 0, 0);
+          setStatus("Ready.");
+        }, { once: true });
       },
       (message, url) => {
         setStatus(`Failed to load effect: ${message} (${url})`, true);
