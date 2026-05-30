@@ -58,13 +58,28 @@ async function main() {
   });
 
   const effect = await context.loadEffect("../effekseer/Resources/00_Basic/Laser01.efkefc");
-  setStatus("Click to play");
 
+  // efkefc has no embedded audio; load the sound via Web Audio API
+  const audioCtx = new AudioContext();
+  let soundBuffer = null;
+  fetch("../effekseer/Resources/Sound/Laser.wav")
+    .then(r => r.arrayBuffer())
+    .then(buf => audioCtx.decodeAudioData(buf))
+    .then(decoded => { soundBuffer = decoded; })
+    .catch(() => {});
+
+  setStatus("Click to play");
   let observer;
   observer = scene.onPointerObservable.add(async (pointerInfo) => {
     if (pointerInfo.type === BABYLON.PointerEventTypes.POINTERDOWN) {
       scene.onPointerObservable.remove(observer);
-      await context.resumeSound();
+      await audioCtx.resume();
+      if (soundBuffer) {
+        const src = audioCtx.createBufferSource();
+        src.buffer = soundBuffer;
+        src.connect(audioCtx.destination);
+        src.start();
+      }
       context.play(effect, 0, 0, 0);
       setStatus("Ready.");
     }
