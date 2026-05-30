@@ -17,13 +17,13 @@ function main() {
 
   const gl = engine._gl;
 
-  effekseer.initRuntime("../effekseer-webgl.wasm", () => {
+  effekseer.initRuntime("../effekseer/effekseer-webgl.wasm", () => {
     const context = effekseer.createContext();
     context.init(gl);
     context.setRestorationOfStatesFlag(true);
 
     const effect = context.loadEffect(
-      "../Resources/Laser01.efk",
+      "../effekseer/Resources/Laser01.efk",
       1.0,
       () => {
         context.play(effect, 0, 0, 0);
