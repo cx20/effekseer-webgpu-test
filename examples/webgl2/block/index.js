@@ -25,7 +25,7 @@ function main() {
     return;
   }
 
-  effekseer.initRuntime("../effekseer/effekseer-webgl.wasm", () => {
+  effekseer.initRuntime("../../effekseer/effekseer-webgl.wasm", () => {
     const context = effekseer.createContext();
     context.init(gl);
     context.setRestorationOfStatesFlag(true);
@@ -34,7 +34,7 @@ function main() {
     context.setCameraLookAt(0, 14, 14, 0, 0, 0, 0, 1, 0);
 
     const effect = context.loadEffect(
-      "../effekseer/Resources/Laser01.efk",
+      "../../effekseer/Resources/block.efk",
       1.0,
       () => {
         setStatus("Click to play");

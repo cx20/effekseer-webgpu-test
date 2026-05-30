@@ -1,4 +1,4 @@
-import { createContext, getLastWebGPUError, initRuntime } from "../effekseer/effekseer.js";
+import { createContext, getLastWebGPUError, initRuntime } from "../../effekseer/effekseer.js";
 
 const canvas = document.getElementById("canvas");
 const statusEl = document.getElementById("status");
@@ -44,8 +44,8 @@ async function main() {
   await initRuntime({
     backend: "webgpu",
     device,
-    scriptPath: "../effekseer/effekseer-webgpu.js",
-    wasmPath: "../effekseer/effekseer-webgpu.wasm",
+    scriptPath: "../../effekseer/effekseer-webgpu.js",
+    wasmPath: "../../effekseer/effekseer-webgpu.wasm",
   });
 
   const context = await createContext({
@@ -57,14 +57,14 @@ async function main() {
     height: canvas.height,
   });
 
-  const effect = await context.loadEffect("../effekseer/Resources/00_Basic/Laser01.efkefc");
+  const effect = await context.loadEffect("../../effekseer/Resources/00_Basic/Laser02.efkefc");
   context.setProjectionPerspective(45, canvas.width / canvas.height, 1, 1000);
   context.setCameraLookAt(0, 14, 14, 0, 0, 0);
 
   // efkefc has no embedded audio; load the sound via Web Audio API
   const audioCtx = new AudioContext();
   let soundBuffer = null;
-  fetch("../effekseer/Resources/Sound/Laser.wav")
+  fetch("../../effekseer/Resources/Sound/Laser.wav")
     .then(r => r.arrayBuffer())
     .then(buf => audioCtx.decodeAudioData(buf))
     .then(decoded => { soundBuffer = decoded; })
