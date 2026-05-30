@@ -31,7 +31,7 @@ function main() {
     context.setRestorationOfStatesFlag(true);
 
     resizeCanvas(gl, context);
-    context.setCameraLookAt(20, 20, 20, 0, 0, 0, 0, 1, 0);
+    context.setCameraLookAt(0, 14, 14, 0, 0, 0, 0, 1, 0);
 
     const effect = context.loadEffect(
       "../effekseer/Resources/Laser01.efk",
