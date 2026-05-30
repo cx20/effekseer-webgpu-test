@@ -9,7 +9,7 @@ Examples of [Effekseer for Web](https://github.com/effekseer/EffekseerForWeb) wi
 | WebGL 1.0   | | |
 | WebGL 2.0   | [Link](https://cx20.github.io/effekseer-test/examples/effekseer/basic-webgl2/) | |
 | WebGPU      | | [Link](https://cx20.github.io/effekseer-test/examples/effekseer/basic-webgpu/) |
-| [Babylon.js](https://github.com/BabylonJS/Babylon.js) (WebGL)  | | |
+| [Babylon.js](https://github.com/BabylonJS/Babylon.js) (WebGL)  | [Link](https://cx20.github.io/effekseer-test/examples/effekseer/babylonjs-webgl/) | |
 | [Babylon.js](https://github.com/BabylonJS/Babylon.js) (WebGPU) | | |
 | [three.js](https://github.com/mrdoob/three.js/) (WebGL)        | | |
 | [three.js](https://github.com/mrdoob/three.js/) (WebGPU)       | | |
