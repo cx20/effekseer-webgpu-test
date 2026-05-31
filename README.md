@@ -1,6 +1,14 @@
 # effekseer-test
 
-Examples of [Effekseer for Web](https://github.com/effekseer/EffekseerForWeb).
+A collection of examples demonstrating [Effekseer for Web](https://github.com/effekseer/EffekseerForWeb) integrated with various Web rendering APIs and JavaScript frameworks.
+
+Each sample includes:
+
+- A 3D scene with a grid floor and a rotating cube
+- A GUI panel to adjust effect **Position** and **Rotation**
+- A play button that spawns a new effect instance on every click
+
+The supported rendering API and framework combinations are shown in the table below.
 
 ## Samples
 
