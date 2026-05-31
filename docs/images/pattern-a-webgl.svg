@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="320" viewBox="0 0 560 320" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="560" height="320" rx="10" fill="#f6f8fa"/>
+  <text x="280" y="34" text-anchor="middle" font-size="17" font-weight="700" fill="#1f2328">Pattern A — WebGL (shared context)</text>
+
+  <!-- Outer canvas -->
+  <rect x="120" y="58" width="320" height="190" rx="10" fill="#ffffff" stroke="#0969da" stroke-width="2"/>
+  <text x="280" y="80" text-anchor="middle" font-size="13" font-weight="600" fill="#0969da">Single &lt;canvas&gt;  —  getContext("webgl2")</text>
+
+  <!-- Framework layer -->
+  <rect x="150" y="98" width="260" height="48" rx="8" fill="#ddf4ff" stroke="#54aeff" stroke-width="1.5"/>
+  <text x="280" y="127" text-anchor="middle" font-size="14" fill="#0a3069">Framework renders scene</text>
+
+  <!-- Arrow -->
+  <line x1="280" y1="148" x2="280" y2="184" stroke="#57606a" stroke-width="2"/>
+  <polygon points="280,192 274,182 286,182" fill="#57606a"/>
+
+  <!-- Effekseer layer -->
+  <rect x="150" y="194" width="260" height="48" rx="8" fill="#ffe8cc" stroke="#fb8500" stroke-width="1.5"/>
+  <text x="280" y="217" text-anchor="middle" font-size="14" fill="#7a3e00">Effekseer draws effects</text>
+  <text x="280" y="234" text-anchor="middle" font-size="11" fill="#7a3e00">same GL context · context.draw()</text>
+
+  <!-- footer note -->
+  <text x="280" y="280" text-anchor="middle" font-size="12" fill="#57606a">setRestorationOfStatesFlag(true) saves &amp; restores all GL state around draw()</text>
+  <text x="280" y="298" text-anchor="middle" font-size="12" fill="#57606a">Effect format: .efk · Camera: setProjectionPerspective + setCameraLookAt</text>
+</svg>
