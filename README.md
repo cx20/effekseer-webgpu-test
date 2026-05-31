@@ -22,6 +22,8 @@ The supported rendering API and framework combinations are shown in the table be
 | three.js (WebGPU)    | [Link](https://cx20.github.io/effekseer-test/examples/threejs-webgpu/laser01/) | [Link](https://cx20.github.io/effekseer-test/examples/threejs-webgpu/laser02/) | [Link](https://cx20.github.io/effekseer-test/examples/threejs-webgpu/simple_ring_shape1/) | [Link](https://cx20.github.io/effekseer-test/examples/threejs-webgpu/block/) |
 | Rhodonite (WebGL)    | [Link](https://cx20.github.io/effekseer-test/examples/rhodonite/laser01/) | [Link](https://cx20.github.io/effekseer-test/examples/rhodonite/laser02/) | [Link](https://cx20.github.io/effekseer-test/examples/rhodonite/simple_ring_shape1/) | [Link](https://cx20.github.io/effekseer-test/examples/rhodonite/block/) |
 | Rhodonite (WebGPU)   | [Link](https://cx20.github.io/effekseer-test/examples/rhodonite-webgpu/laser01/) | [Link](https://cx20.github.io/effekseer-test/examples/rhodonite-webgpu/laser02/) | [Link](https://cx20.github.io/effekseer-test/examples/rhodonite-webgpu/simple_ring_shape1/) | [Link](https://cx20.github.io/effekseer-test/examples/rhodonite-webgpu/block/) |
+| PlayCanvas (WebGL)   | [Link](https://cx20.github.io/effekseer-test/examples/playcanvas/laser01/) | [Link](https://cx20.github.io/effekseer-test/examples/playcanvas/laser02/) | [Link](https://cx20.github.io/effekseer-test/examples/playcanvas/simple_ring_shape1/) | [Link](https://cx20.github.io/effekseer-test/examples/playcanvas/block/) |
+| PlayCanvas (WebGPU)  | [Link](https://cx20.github.io/effekseer-test/examples/playcanvas-webgpu/laser01/) | [Link](https://cx20.github.io/effekseer-test/examples/playcanvas-webgpu/laser02/) | [Link](https://cx20.github.io/effekseer-test/examples/playcanvas-webgpu/simple_ring_shape1/) | [Link](https://cx20.github.io/effekseer-test/examples/playcanvas-webgpu/block/) |
 
 ## Complex Samples
 
@@ -37,3 +39,5 @@ Each complex sample loads all four effects and provides a dedicated play button 
 | three.js (WebGPU)    | [Link](https://cx20.github.io/effekseer-test/examples/threejs-webgpu/complex/) |
 | Rhodonite (WebGL)    | [Link](https://cx20.github.io/effekseer-test/examples/rhodonite/complex/) |
 | Rhodonite (WebGPU)   | [Link](https://cx20.github.io/effekseer-test/examples/rhodonite-webgpu/complex/) |
+| PlayCanvas (WebGL)   | [Link](https://cx20.github.io/effekseer-test/examples/playcanvas/complex/) |
+| PlayCanvas (WebGPU)  | [Link](https://cx20.github.io/effekseer-test/examples/playcanvas-webgpu/complex/) |
