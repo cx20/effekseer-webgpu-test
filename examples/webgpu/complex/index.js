@@ -130,7 +130,7 @@ struct VO{@builtin(position)p:vec4<f32>,@location(0)n:vec3<f32>}
   EFFECT_DEFS.forEach(({name})=>{
     gui.add({play:async()=>{
       await audioCtx.resume();
-      if(soundBuffer){const s=audioCtx.createBufferSource();s.buffer=soundBuffer;s.connect(audioCtx.destination);s.start();}
+      if(name==="Laser01"&&soundBuffer){const s=audioCtx.createBufferSource();s.buffer=soundBuffer;s.connect(audioCtx.destination);s.start();}
       const D2R=Math.PI/180;
       const handle=context.play(loadedEffects[name],params.position.x,params.position.y,params.position.z);
       handle.setRotation(params.rotation.x*D2R,params.rotation.y*D2R,params.rotation.z*D2R);

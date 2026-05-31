@@ -114,7 +114,7 @@ async function main() {
     gui.add({
       play: async () => {
         await audioCtx.resume();
-        if (soundBuffer) {
+        if (name === "Laser01" && soundBuffer) {
           const src = audioCtx.createBufferSource();
           src.buffer = soundBuffer;
           src.connect(audioCtx.destination);
