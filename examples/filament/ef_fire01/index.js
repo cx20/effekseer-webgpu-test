@@ -1,15 +1,7 @@
 import GUI from "https://cdn.jsdelivr.net/npm/lil-gui@0.19/+esm";
 
-const EFFECT_DEFS = [
-  { name: "Laser01",            path: "../../effekseer/Resources/Laser01.efk" },
-  { name: "Laser02",            path: "../../effekseer/Resources/Laser02.efk" },
-  { name: "Simple_Ring_Shape1", path: "../../effekseer/Resources/Simple_Ring_Shape1.efk" },
-  { name: "block",              path: "../../effekseer/Resources/block.efk" },
-  { name: "ef_fire01", path: "../../effekseer/Resources/EffectMaterials/ef_fire01.efkefc" },
-  { name: "ef_lightning01", path: "../../effekseer/Resources/EffectMaterials/ef_lightning01.efkefc" },
-  { name: "ef_holy01", path: "../../effekseer/Resources/EffectMaterials/ef_holy01.efkefc" },
-  { name: "ef_parts_hit01", path: "../../effekseer/Resources/EffectMaterials/ef_parts_hit01.efkefc" },
-];
+const EFFECT_NAME = "ef_fire01";
+const EFFECT_PATH = "../../effekseer/Resources/EffectMaterials/ef_fire01.efkefc";
 
 // ---- In-code GLB builder (cube + grid as a single asset) ----
 function alignTo4(n) { return (n + 3) & ~3; }
@@ -94,7 +86,7 @@ function buildSceneGlb() {
   accessors.push({ bufferView: gridIdxBV, componentType: 5125, count: gridIdxArr.length, type: 'SCALAR' });
 
   const gltf = {
-    asset: { version: '2.0', generator: 'filament-effekseer-complex' },
+    asset: { version: '2.0', generator: 'filament-effekseer-effectmaterials' },
     extensionsUsed: ['KHR_materials_unlit'],
     scene: 0,
     scenes: [{ nodes: [0, 1] }],
@@ -257,21 +249,19 @@ async function main() {
   // Save and restore all GL state around each draw so Filament is unaffected.
   efkContext.setRestorationOfStatesFlag(true);
 
-  setStatus('Loading effects...');
-  const loadedEffects = {};
-  await Promise.all(EFFECT_DEFS.map(({ name, path }) =>
-    new Promise((resolve, reject) => {
-      loadedEffects[name] = efkContext.loadEffect(
-        path, 1.0, resolve,
-        (msg, url) => reject(new Error(`Failed to load ${name}: ${msg} (${url})`))
-      );
-    })
-  ));
+  setStatus('Loading effect...');
+  let effect;
+  await new Promise((resolve, reject) => {
+    effect = efkContext.loadEffect(
+      EFFECT_PATH, 1.0, resolve,
+      (msg, url) => reject(new Error(`Failed to load ${EFFECT_NAME}: ${msg} (${url})`))
+    );
+  });
   setStatus('Ready');
 
   // GUI
   const params = { position: { x: 0, y: 0, z: 0 }, rotation: { x: 0, y: 0, z: 0 } };
-  const gui  = new GUI({ title: 'Effects' });
+  const gui  = new GUI({ title: 'Effect' });
   const posF = gui.addFolder('Position');
   posF.add(params.position, 'x', -10, 10, 0.1);
   posF.add(params.position, 'y', -10, 10, 0.1);
@@ -280,16 +270,13 @@ async function main() {
   rotF.add(params.rotation, 'x', -180, 180, 1).name('x (deg)');
   rotF.add(params.rotation, 'y', -180, 180, 1).name('y (deg)');
   rotF.add(params.rotation, 'z', -180, 180, 1).name('z (deg)');
-
-  EFFECT_DEFS.forEach(({ name }) => {
-    gui.add({
-      play: () => {
-        const D2R = Math.PI / 180;
-        const handle = efkContext.play(loadedEffects[name], params.position.x, params.position.y, params.position.z);
-        handle.setRotation(params.rotation.x * D2R, params.rotation.y * D2R, params.rotation.z * D2R);
-      }
-    }, 'play').name(`▶ ${name}`);
-  });
+  gui.add({
+    play: () => {
+      const D2R = Math.PI / 180;
+      const handle = efkContext.play(effect, params.position.x, params.position.y, params.position.z);
+      handle.setRotation(params.rotation.x * D2R, params.rotation.y * D2R, params.rotation.z * D2R);
+    }
+  }, 'play').name('▶ Play Effect');
 
   // Render loop
   const tcm    = engine.getTransformManager();

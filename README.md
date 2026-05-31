@@ -30,7 +30,7 @@ The supported rendering API and framework combinations are shown in the table be
 
 ## Complex Samples
 
-Each complex sample loads all four effects and provides a dedicated play button for each one in the GUI panel.
+Each complex sample loads all eight effects and provides a dedicated play button for each one in the GUI panel.
 
 | Library | Link |
 |:--------|:----:|
@@ -60,5 +60,6 @@ Effects from [effekseer/EffectMaterials](https://github.com/effekseer/EffectMate
 | Babylon.js (WebGPU)  | [Link](https://cx20.github.io/effekseer-test/examples/babylonjs-webgpu/ef_fire01/) | [Link](https://cx20.github.io/effekseer-test/examples/babylonjs-webgpu/ef_lightning01/) | [Link](https://cx20.github.io/effekseer-test/examples/babylonjs-webgpu/ef_holy01/) | [Link](https://cx20.github.io/effekseer-test/examples/babylonjs-webgpu/ef_parts_hit01/) |
 | PlayCanvas (WebGL)   | [Link](https://cx20.github.io/effekseer-test/examples/playcanvas/ef_fire01/) | [Link](https://cx20.github.io/effekseer-test/examples/playcanvas/ef_lightning01/) | [Link](https://cx20.github.io/effekseer-test/examples/playcanvas/ef_holy01/) | [Link](https://cx20.github.io/effekseer-test/examples/playcanvas/ef_parts_hit01/) |
 | PlayCanvas (WebGPU)  | [Link](https://cx20.github.io/effekseer-test/examples/playcanvas-webgpu/ef_fire01/) | [Link](https://cx20.github.io/effekseer-test/examples/playcanvas-webgpu/ef_lightning01/) | [Link](https://cx20.github.io/effekseer-test/examples/playcanvas-webgpu/ef_holy01/) | [Link](https://cx20.github.io/effekseer-test/examples/playcanvas-webgpu/ef_parts_hit01/) |
+| Filament (WebGL) 🚧  | [Link](https://cx20.github.io/effekseer-test/examples/filament/ef_fire01/) | [Link](https://cx20.github.io/effekseer-test/examples/filament/ef_lightning01/) | [Link](https://cx20.github.io/effekseer-test/examples/filament/ef_holy01/) | [Link](https://cx20.github.io/effekseer-test/examples/filament/ef_parts_hit01/) |
 | Rhodonite (WebGL)    | [Link](https://cx20.github.io/effekseer-test/examples/rhodonite/ef_fire01/) | [Link](https://cx20.github.io/effekseer-test/examples/rhodonite/ef_lightning01/) | [Link](https://cx20.github.io/effekseer-test/examples/rhodonite/ef_holy01/) | [Link](https://cx20.github.io/effekseer-test/examples/rhodonite/ef_parts_hit01/) |
 | Rhodonite (WebGPU)   | [Link](https://cx20.github.io/effekseer-test/examples/rhodonite-webgpu/ef_fire01/) | [Link](https://cx20.github.io/effekseer-test/examples/rhodonite-webgpu/ef_lightning01/) | [Link](https://cx20.github.io/effekseer-test/examples/rhodonite-webgpu/ef_holy01/) | [Link](https://cx20.github.io/effekseer-test/examples/rhodonite-webgpu/ef_parts_hit01/) |
