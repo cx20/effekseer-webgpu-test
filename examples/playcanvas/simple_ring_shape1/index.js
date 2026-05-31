@@ -49,8 +49,8 @@ function main() {
   cubeMat.update();
   boxEntity.render.meshInstances[0].material = cubeMat;
 
-  let theta = Math.PI * 0.75;
-  let phi = Math.PI / 4;
+  let theta = Math.PI / 4;
+  let phi = Math.acos(15 / 26);
   let radius = 26;
 
   function getCameraPos() {
