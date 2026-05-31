@@ -121,7 +121,7 @@ const load = async function () {
             const audioCtx = window.AL?.currentCtx?.audioCtx ?? window.AL?.currentCtx?.ctx;
             if (audioCtx?.state !== 'running') audioCtx?.resume();
             const handle = effekseerContext.play(effect, params.position.x, params.position.y, params.position.z);
-            const D2R = Math.PI / 180; effekseerContext.setRotation(handle, params.rotation.x * D2R, params.rotation.y * D2R, params.rotation.z * D2R);
+            const D2R = Math.PI / 180; handle.setRotation(params.rotation.x * D2R, params.rotation.y * D2R, params.rotation.z * D2R);
           }}, 'play').name('▶ Play Effect');
           resolve();
         },

@@ -167,7 +167,7 @@ struct VO { @builtin(position) p: vec4<f32>, @location(0) n: vec3<f32> }
     await audioCtx.resume();
     if (soundBuffer) { const s = audioCtx.createBufferSource(); s.buffer = soundBuffer; s.connect(audioCtx.destination); s.start(); }
     const handle = context.play(effect, params.position.x, params.position.y, params.position.z);
-    const D2R = Math.PI / 180; context.setRotation(handle, params.rotation.x * D2R, params.rotation.y * D2R, params.rotation.z * D2R);
+    const D2R = Math.PI / 180; handle.setRotation(params.rotation.x * D2R, params.rotation.y * D2R, params.rotation.z * D2R);
   }}, "play").name("▶ Play Effect");
 
   let t = 0;

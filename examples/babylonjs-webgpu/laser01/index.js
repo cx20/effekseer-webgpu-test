@@ -122,7 +122,7 @@ async function main() {
         src.start();
       }
       const handle = context.play(effect, params.position.x, params.position.y, params.position.z);
-      const D2R = Math.PI / 180; context.setRotation(handle, params.rotation.x * D2R, params.rotation.y * D2R, params.rotation.z * D2R);
+      const D2R = Math.PI / 180; handle.setRotation(params.rotation.x * D2R, params.rotation.y * D2R, params.rotation.z * D2R);
     }
   }, "play").name("▶ Play Effect");
 
