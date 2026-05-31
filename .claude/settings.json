@@ -40,7 +40,13 @@
       "Bash(cp examples/webgl2/laser01/style.css examples/webgl2/laser02/style.css)",
       "Bash(sed 's|Basic WebGL 2.0|Laser02 - WebGL 2.0|; s|effekseer-webgl.js|../../effekseer/effekseer-webgl.js|' examples/webgl2/laser01/index.html)",
       "Bash(cat)",
-      "Bash(grep -E \"^examples/[^/]+/[^/]+/?$\")"
+      "Bash(grep -E \"^examples/[^/]+/[^/]+/?$\")",
+      "Bash(git branch *)",
+      "Bash(xargs grep -h \"loadEffect\")",
+      "Bash(xargs grep -hl \"Sound\")",
+      "Bash(Remove-Item \"c:\\\\github\\\\effekseer-test\\\\examples\\\\rhodonite\\\\index.html\", \"c:\\\\github\\\\effekseer-test\\\\examples\\\\rhodonite\\\\index.js\", \"c:\\\\github\\\\effekseer-test\\\\examples\\\\rhodonite\\\\style.css\")",
+      "Bash(Remove-Item \"c:\\\\github\\\\effekseer-test\\\\examples\\\\rhodonite-webgpu\\\\index.html\", \"c:\\\\github\\\\effekseer-test\\\\examples\\\\rhodonite-webgpu\\\\index.js\", \"c:\\\\github\\\\effekseer-test\\\\examples\\\\rhodonite-webgpu\\\\style.css\")",
+      "WebFetch(domain:effekseer.github.io)"
     ],
     "additionalDirectories": [
       "c:\\github\\effekseer-test\\_tmp_webgl\\Resources\\Texture"

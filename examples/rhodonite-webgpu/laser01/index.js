@@ -1,5 +1,6 @@
 import Rn from 'rhodonite';
 import { createContext, getLastWebGPUError, initRuntime } from '../../effekseer/effekseer.js';
+import GUI from 'https://cdn.jsdelivr.net/npm/lil-gui@0.19/+esm';
 
 const rhodoniteCanvas = document.getElementById('world');
 const effekseerCanvas = document.getElementById('canvas');
@@ -68,7 +69,7 @@ const load = async function () {
 
   const effect = await context.loadEffect('../../effekseer/Resources/00_Basic/Laser01.efkefc');
   context.setProjectionPerspective(45, window.innerWidth / window.innerHeight, 0.1, 1000);
-  context.setCameraLookAt(0, 14, 14, 0, 0, 0, 0, 1, 0);
+  context.setCameraLookAt(20, 20, 20, 0, 0, 0, 0, 1, 0);
 
   const audioCtx = new AudioContext();
   let soundBuffer = null;
@@ -78,18 +79,31 @@ const load = async function () {
     .then(decoded => { soundBuffer = decoded; })
     .catch(() => {});
 
-  setStatus('Click to play');
-  document.addEventListener('click', async () => {
-    await audioCtx.resume();
-    if (soundBuffer) {
-      const src = audioCtx.createBufferSource();
-      src.buffer = soundBuffer;
-      src.connect(audioCtx.destination);
-      src.start();
+  setStatus('Ready');
+
+  const params = { position: { x: 0, y: 0, z: 0 }, rotation: { x: 0, y: 0, z: 0 } };
+  const gui = new GUI({ title: 'Effect' });
+  const posF = gui.addFolder('Position');
+  posF.add(params.position, 'x', -10, 10, 0.1);
+  posF.add(params.position, 'y', -10, 10, 0.1);
+  posF.add(params.position, 'z', -10, 10, 0.1);
+  const rotF = gui.addFolder('Rotation');
+  rotF.add(params.rotation, 'x', -Math.PI, Math.PI, 0.01).name('x (rad)');
+  rotF.add(params.rotation, 'y', -Math.PI, Math.PI, 0.01).name('y (rad)');
+  rotF.add(params.rotation, 'z', -Math.PI, Math.PI, 0.01).name('z (rad)');
+  gui.add({
+    play: async () => {
+      await audioCtx.resume();
+      if (soundBuffer) {
+        const src = audioCtx.createBufferSource();
+        src.buffer = soundBuffer;
+        src.connect(audioCtx.destination);
+        src.start();
+      }
+      const handle = context.play(effect, params.position.x, params.position.y, params.position.z);
+      context.setRotation(handle, params.rotation.x, params.rotation.y, params.rotation.z);
     }
-    context.play(effect, 0, 0, 0);
-    setStatus('Ready.');
-  }, { once: true });
+  }, 'play').name('▶ Play Effect');
 
   window.addEventListener('resize', () => {
     resizeEffekseerCanvas(context);
@@ -102,9 +116,7 @@ const load = async function () {
     context.drawToCanvas();
 
     const err = getLastWebGPUError();
-    if (err) {
-      setStatus(err, true);
-    }
+    if (err) setStatus(err, true);
 
     requestAnimationFrame(draw);
   };
