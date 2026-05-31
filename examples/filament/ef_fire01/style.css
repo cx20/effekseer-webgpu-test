@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background: #15191f;
+  overflow: hidden;
+}
+
+canvas {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+
+#status {
+  position: fixed;
+  bottom: 16px;
+  left: 16px;
+  color: #bfd0df;
+  font: 14px system-ui, sans-serif;
+  pointer-events: none;
+}

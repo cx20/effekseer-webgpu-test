@@ -18,6 +18,10 @@ const EFFECT_DEFS = [
   { name: "Laser02",            path: "../../effekseer/Resources/Laser02.efk" },
   { name: "Simple_Ring_Shape1", path: "../../effekseer/Resources/Simple_Ring_Shape1.efk" },
   { name: "block",              path: "../../effekseer/Resources/block.efk" },
+  { name: "ef_fire01", path: "../../effekseer/Resources/EffectMaterials/ef_fire01.efkefc" },
+  { name: "ef_lightning01", path: "../../effekseer/Resources/EffectMaterials/ef_lightning01.efkefc" },
+  { name: "ef_holy01", path: "../../effekseer/Resources/EffectMaterials/ef_holy01.efkefc" },
+  { name: "ef_parts_hit01", path: "../../effekseer/Resources/EffectMaterials/ef_parts_hit01.efkefc" },
 ];
 
 function main() {
