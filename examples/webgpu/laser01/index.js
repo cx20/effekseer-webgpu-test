@@ -160,14 +160,14 @@ struct VO { @builtin(position) p: vec4<f32>, @location(0) n: vec3<f32> }
   const posF = gui.addFolder("Position");
   posF.add(params.position, "x", -10, 10, 0.1); posF.add(params.position, "y", -10, 10, 0.1); posF.add(params.position, "z", -10, 10, 0.1);
   const rotF = gui.addFolder("Rotation");
-  rotF.add(params.rotation, "x", -Math.PI, Math.PI, 0.01).name("x (rad)");
-  rotF.add(params.rotation, "y", -Math.PI, Math.PI, 0.01).name("y (rad)");
-  rotF.add(params.rotation, "z", -Math.PI, Math.PI, 0.01).name("z (rad)");
+  rotF.add(params.rotation, "x", -180, 180, 1).name("x (deg)");
+  rotF.add(params.rotation, "y", -180, 180, 1).name("y (deg)");
+  rotF.add(params.rotation, "z", -180, 180, 1).name("z (deg)");
   gui.add({ play: async () => {
     await audioCtx.resume();
     if (soundBuffer) { const s = audioCtx.createBufferSource(); s.buffer = soundBuffer; s.connect(audioCtx.destination); s.start(); }
     const handle = context.play(effect, params.position.x, params.position.y, params.position.z);
-    context.setRotation(handle, params.rotation.x, params.rotation.y, params.rotation.z);
+    const D2R = Math.PI / 180; context.setRotation(handle, params.rotation.x * D2R, params.rotation.y * D2R, params.rotation.z * D2R);
   }}, "play").name("▶ Play Effect");
 
   let t = 0;
