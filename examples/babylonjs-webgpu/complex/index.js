@@ -39,6 +39,10 @@ const EFFECT_DEFS = [
   { name: "Laser02",            path: "../../effekseer/Resources/00_Basic/Laser02.efkefc" },
   { name: "Simple_Ring_Shape1", path: "../../effekseer/Resources/00_Basic/Simple_Ring_Shape1.efkefc" },
   { name: "block",              path: "../../effekseer/Resources/block.efk" },
+  { name: "ef_fire01",      path: "../../effekseer/Resources/EffectMaterials/ef_fire01.efkefc" },
+  { name: "ef_lightning01", path: "../../effekseer/Resources/EffectMaterials/ef_lightning01.efkefc" },
+  { name: "ef_holy01",      path: "../../effekseer/Resources/EffectMaterials/ef_holy01.efkefc" },
+  { name: "ef_parts_hit01", path: "../../effekseer/Resources/EffectMaterials/ef_parts_hit01.efkefc" },
 ];
 
 async function main() {
@@ -120,7 +124,7 @@ async function main() {
     gui.add({
       play: async () => {
         await audioCtx.resume();
-        if (soundBuffer) {
+        if (name === "Laser01" && soundBuffer) {
           const src = audioCtx.createBufferSource();
           src.buffer = soundBuffer;
           src.connect(audioCtx.destination);

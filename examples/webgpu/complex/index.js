@@ -15,6 +15,10 @@ const EFFECT_DEFS = [
   { name: "Laser02",            path: "../../effekseer/Resources/00_Basic/Laser02.efkefc" },
   { name: "Simple_Ring_Shape1", path: "../../effekseer/Resources/00_Basic/Simple_Ring_Shape1.efkefc" },
   { name: "block",              path: "../../effekseer/Resources/block.efk" },
+  { name: "ef_fire01",      path: "../../effekseer/Resources/EffectMaterials/ef_fire01.efkefc" },
+  { name: "ef_lightning01", path: "../../effekseer/Resources/EffectMaterials/ef_lightning01.efkefc" },
+  { name: "ef_holy01",      path: "../../effekseer/Resources/EffectMaterials/ef_holy01.efkefc" },
+  { name: "ef_parts_hit01", path: "../../effekseer/Resources/EffectMaterials/ef_parts_hit01.efkefc" },
 ];
 
 function matPerspective(fovDeg, aspect, near, far) {
@@ -126,7 +130,7 @@ struct VO{@builtin(position)p:vec4<f32>,@location(0)n:vec3<f32>}
   EFFECT_DEFS.forEach(({name})=>{
     gui.add({play:async()=>{
       await audioCtx.resume();
-      if(soundBuffer){const s=audioCtx.createBufferSource();s.buffer=soundBuffer;s.connect(audioCtx.destination);s.start();}
+      if(name==="Laser01"&&soundBuffer){const s=audioCtx.createBufferSource();s.buffer=soundBuffer;s.connect(audioCtx.destination);s.start();}
       const D2R=Math.PI/180;
       const handle=context.play(loadedEffects[name],params.position.x,params.position.y,params.position.z);
       handle.setRotation(params.rotation.x*D2R,params.rotation.y*D2R,params.rotation.z*D2R);
