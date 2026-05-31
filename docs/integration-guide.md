@@ -12,15 +12,15 @@ This document describes the technical structure of each sample and the integrati
 4. [Per-Framework Details](#4-per-framework-details)
    - [WebGL](#41-webgl)
    - [WebGPU](#42-webgpu)
-   - [Babylon.js (WebGL)](#43-babylonjs-webgl)
-   - [Babylon.js (WebGPU)](#44-babylonjs-webgpu)
-   - [three.js (WebGL)](#45-threejs-webgl)
-   - [three.js (WebGPU)](#46-threejs-webgpu)
-   - [Rhodonite (WebGL)](#47-rhodonite-webgl)
-   - [Rhodonite (WebGPU)](#48-rhodonite-webgpu)
-   - [PlayCanvas (WebGL)](#49-playcanvas-webgl)
-   - [PlayCanvas (WebGPU)](#410-playcanvas-webgpu)
-   - [Filament (WebGL)](#411-filament-webgl-)
+   - [three.js (WebGL)](#43-threejs-webgl)
+   - [three.js (WebGPU)](#44-threejs-webgpu)
+   - [Babylon.js (WebGL)](#45-babylonjs-webgl)
+   - [Babylon.js (WebGPU)](#46-babylonjs-webgpu)
+   - [PlayCanvas (WebGL)](#47-playcanvas-webgl)
+   - [PlayCanvas (WebGPU)](#48-playcanvas-webgpu)
+   - [Filament (WebGL)](#49-filament-webgl-)
+   - [Rhodonite (WebGL)](#410-rhodonite-webgl)
+   - [Rhodonite (WebGPU)](#411-rhodonite-webgpu)
 5. [Key Technical Considerations](#5-key-technical-considerations)
 
 ---
@@ -177,7 +177,43 @@ const context = await createContext({
 
 ---
 
-### 4.3 Babylon.js (WebGL)
+### 4.3 three.js (WebGL)
+
+| Item | Detail |
+|------|--------|
+| Pattern | A (shared context) |
+| Context acquisition | `renderer.getContext()` from `THREE.WebGLRenderer` |
+| Effekseer init | Callback |
+| Effect format | `.efk` |
+| Camera | `THREE.PerspectiveCamera`; **raw matrices** passed to Effekseer |
+| Render hook | `requestAnimationFrame` loop |
+| Camera API | `setProjectionMatrix()` + `setCameraMatrix()` instead of perspective/lookAt |
+
+```javascript
+// three.js passes pre-computed matrices directly
+context.setProjectionMatrix(Array.from(camera.projectionMatrix.elements));
+context.setCameraMatrix(Array.from(camera.matrixWorldInverse.elements));
+```
+
+> **Note:** This is the only framework that uses the matrix-based camera API.
+
+---
+
+### 4.4 three.js (WebGPU)
+
+| Item | Detail |
+|------|--------|
+| Pattern | B (overlay canvas) |
+| Context acquisition | `new THREE.WebGPURenderer({canvas})` + `await renderer.init()` |
+| Effekseer init | Async |
+| Effect format | `.efkefc` (except `block.efk`) |
+| Camera | `THREE.PerspectiveCamera`; switches back to `setProjectionPerspective` + `setCameraLookAt` (not matrix-based) |
+| Render hook | `requestAnimationFrame` loop |
+| Orbit controls | `THREE.OrbitControls`; target extracted from `controls.target` |
+
+---
+
+### 4.5 Babylon.js (WebGL)
 
 | Item | Detail |
 |------|--------|
@@ -200,7 +236,7 @@ context.setCameraLookAt(
 
 ---
 
-### 4.4 Babylon.js (WebGPU)
+### 4.6 Babylon.js (WebGPU)
 
 | Item | Detail |
 |------|--------|
@@ -214,70 +250,7 @@ context.setCameraLookAt(
 
 ---
 
-### 4.5 three.js (WebGL)
-
-| Item | Detail |
-|------|--------|
-| Pattern | A (shared context) |
-| Context acquisition | `renderer.getContext()` from `THREE.WebGLRenderer` |
-| Effekseer init | Callback |
-| Effect format | `.efk` |
-| Camera | `THREE.PerspectiveCamera`; **raw matrices** passed to Effekseer |
-| Render hook | `requestAnimationFrame` loop |
-| Camera API | `setProjectionMatrix()` + `setCameraMatrix()` instead of perspective/lookAt |
-
-```javascript
-// three.js passes pre-computed matrices directly
-context.setProjectionMatrix(Array.from(camera.projectionMatrix.elements));
-context.setCameraMatrix(Array.from(camera.matrixWorldInverse.elements));
-```
-
-> **Note:** This is the only framework that uses the matrix-based camera API.
-
----
-
-### 4.6 three.js (WebGPU)
-
-| Item | Detail |
-|------|--------|
-| Pattern | B (overlay canvas) |
-| Context acquisition | `new THREE.WebGPURenderer({canvas})` + `await renderer.init()` |
-| Effekseer init | Async |
-| Effect format | `.efkefc` (except `block.efk`) |
-| Camera | `THREE.PerspectiveCamera`; switches back to `setProjectionPerspective` + `setCameraLookAt` (not matrix-based) |
-| Render hook | `requestAnimationFrame` loop |
-| Orbit controls | `THREE.OrbitControls`; target extracted from `controls.target` |
-
----
-
-### 4.7 Rhodonite (WebGL)
-
-| Item | Detail |
-|------|--------|
-| Pattern | A (shared context) |
-| Context acquisition | `canvas.getContext('webgl2')` after `Rn.Engine.init(...)` |
-| Effekseer init | Promise-wrapped callback |
-| Effect format | `.efk` |
-| Camera | Fixed eye at `[20, 20, 20]`; set once at init, not per-frame |
-| Render hook | `requestAnimationFrame` loop; `engine.process([expression])` then `draw()` |
-| Canvas ID | `world` (not `canvas`) for the Rhodonite canvas |
-
----
-
-### 4.8 Rhodonite (WebGPU)
-
-| Item | Detail |
-|------|--------|
-| Pattern | B (overlay canvas) |
-| Context acquisition | `Rn.Engine.init({approach: Rn.ProcessApproach.WebGPU, canvas})` |
-| Effekseer init | Async; no explicit device reference |
-| Effect format | `.efkefc` (except `block.efk`) |
-| Camera | Fixed eye at `[20, 20, 20]`; updated on resize |
-| Render hook | `requestAnimationFrame` loop; `engine.process()` then `drawToCanvas()` |
-
----
-
-### 4.9 PlayCanvas (WebGL)
+### 4.7 PlayCanvas (WebGL)
 
 | Item | Detail |
 |------|--------|
@@ -308,7 +281,7 @@ app.on("postrender", () => {
 
 ---
 
-### 4.10 PlayCanvas (WebGPU)
+### 4.8 PlayCanvas (WebGPU)
 
 | Item | Detail |
 |------|--------|
@@ -322,7 +295,7 @@ app.on("postrender", () => {
 
 ---
 
-### 4.11 Filament (WebGL) 🚧
+### 4.9 Filament (WebGL) 🚧
 
 | Item | Detail |
 |------|--------|
@@ -356,6 +329,33 @@ gl.bindFramebuffer(gl.FRAMEBUFFER, savedFBO);
 
 > **Why gltfio?** Filament has no built-in primitive builder. The scene is assembled
 > as a GLB binary at runtime and loaded through Filament's `createAssetLoader()` API.
+
+---
+
+### 4.10 Rhodonite (WebGL)
+
+| Item | Detail |
+|------|--------|
+| Pattern | A (shared context) |
+| Context acquisition | `canvas.getContext('webgl2')` after `Rn.Engine.init(...)` |
+| Effekseer init | Promise-wrapped callback |
+| Effect format | `.efk` |
+| Camera | Fixed eye at `[20, 20, 20]`; set once at init, not per-frame |
+| Render hook | `requestAnimationFrame` loop; `engine.process([expression])` then `draw()` |
+| Canvas ID | `world` (not `canvas`) for the Rhodonite canvas |
+
+---
+
+### 4.11 Rhodonite (WebGPU)
+
+| Item | Detail |
+|------|--------|
+| Pattern | B (overlay canvas) |
+| Context acquisition | `Rn.Engine.init({approach: Rn.ProcessApproach.WebGPU, canvas})` |
+| Effekseer init | Async; no explicit device reference |
+| Effect format | `.efkefc` (except `block.efk`) |
+| Camera | Fixed eye at `[20, 20, 20]`; updated on resize |
+| Render hook | `requestAnimationFrame` loop; `engine.process()` then `drawToCanvas()` |
 
 ---
 

@@ -43,12 +43,12 @@ From [effekseer/EffectMaterials](https://github.com/effekseer/EffectMaterials). 
 |-----------|---------|--------|---------------|-------------|
 | WebGL | WebGL2 | Single | Callback | `draw()` |
 | WebGPU | WebGPU | Dual | Async/await | `drawToCanvas()` |
-| Babylon.js | WebGL | Single | Callback | `draw()` |
-| Babylon.js | WebGPU | Dual | Async/await | `drawToCanvas()` |
 | three.js | WebGL | Single | Callback | `draw()` |
 | three.js | WebGPU | Dual | Async/await | `drawToCanvas()` |
-| Rhodonite | WebGL | Single | Callback | `draw()` |
-| Rhodonite | WebGPU | Dual | Async/await | `drawToCanvas()` |
+| Babylon.js | WebGL | Single | Callback | `draw()` |
+| Babylon.js | WebGPU | Dual | Async/await | `drawToCanvas()` |
 | PlayCanvas | WebGL | Single | Callback | `draw()` |
 | PlayCanvas | WebGPU | Dual | Async/await | `drawToCanvas()` |
 | Filament 🚧 | WebGL | Single | Callback | `draw()` |
+| Rhodonite | WebGL | Single | Callback | `draw()` |
+| Rhodonite | WebGPU | Dual | Async/await | `drawToCanvas()` |
