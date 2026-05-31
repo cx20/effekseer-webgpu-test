@@ -1,4 +1,4 @@
-import { createContext, getLastWebGPUError, initRuntime } from "../effekseer/effekseer.js";
+import { createContext, getLastWebGPUError, initRuntime } from "../../effekseer/effekseer.js";
 
 const babylonCanvas = document.getElementById("canvas-babylon");
 const effekseerCanvas = document.getElementById("canvas");
@@ -39,8 +39,8 @@ async function main() {
 
   await initRuntime({
     backend: "webgpu",
-    scriptPath: "../effekseer/effekseer-webgpu.js",
-    wasmPath: "../effekseer/effekseer-webgpu.wasm",
+    scriptPath: "../../effekseer/effekseer-webgpu.js",
+    wasmPath: "../../effekseer/effekseer-webgpu.wasm",
   });
 
   const canvasContext = effekseerCanvas.getContext("webgpu");
@@ -57,12 +57,12 @@ async function main() {
     enablePremultipliedAlpha: true,
   });
 
-  const effect = await context.loadEffect("../effekseer/Resources/00_Basic/Laser01.efkefc");
+  const effect = await context.loadEffect("../../effekseer/Resources/00_Basic/Simple_Ring_Shape1.efkefc");
 
   // efkefc has no embedded audio; load the sound via Web Audio API
   const audioCtx = new AudioContext();
   let soundBuffer = null;
-  fetch("../effekseer/Resources/Sound/Laser.wav")
+  fetch("../../effekseer/Resources/Sound/Laser.wav")
     .then(r => r.arrayBuffer())
     .then(buf => audioCtx.decodeAudioData(buf))
     .then(decoded => { soundBuffer = decoded; })

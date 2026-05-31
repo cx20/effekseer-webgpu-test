@@ -1,0 +1,49 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh run *)",
+      "PowerShell(Copy-Item \"c:\\\\github\\\\effekseer-test\\\\_tmp_webgl\\\\effekseer.js\" \"c:\\\\github\\\\effekseer-test\\\\examples\\\\effekseer\\\\effekseer-webgl.js\")",
+      "PowerShell(Copy-Item \"c:\\\\github\\\\effekseer-test\\\\_tmp_webgl\\\\effekseer.wasm\" \"c:\\\\github\\\\effekseer-test\\\\examples\\\\effekseer\\\\effekseer-webgl.wasm\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\github\\\\effekseer-test\\\\examples\\\\effekseer\\\\basic-webgl2\")",
+      "Read(//c/github/effekseer-test/^00_|/.d/.ts$|/**)",
+      "Bash(git checkout *)",
+      "Bash(git commit -m ' *)",
+      "Bash(gh pr create --title 'Add WebGL 2.0 minimal sample' --body ' *)",
+      "Bash(gh pr edit 4 --body ' *)",
+      "WebFetch(domain:cx20.github.io)",
+      "Bash(git pull *)",
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\github\\\\effekseer-test\\\\examples\\\\effekseer\\\\babylonjs-webgl\")",
+      "Bash(gh pr create --title 'Add Babylon.js \\(WebGL\\) sample for EffekseerForWebGL' --body ' *)",
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\github\\\\effekseer-test\\\\examples\\\\effekseer\\\\babylonjs-webgpu\")",
+      "Bash(git restore *)",
+      "Bash(git stash *)",
+      "Bash(gh pr create --title 'Add Babylon.js \\(WebGPU\\) sample for EffekseerForWeb' --body ' *)",
+      "Bash(git mv *)",
+      "Bash(gh pr create --title 'Reorganize examples into flat per-renderer folder structure' --body ' *)",
+      "WebFetch(domain:cdn.jsdelivr.net)",
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\github\\\\effekseer-test\\\\examples\\\\threejs\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\github\\\\effekseer-test\\\\examples\\\\threejs-webgpu\")",
+      "Bash(gh pr create --title 'Add three.js \\(WebGL and WebGPU\\) samples for EffekseerForWeb' --body ' *)",
+      "Bash(gh pr create --title 'Fix polygon artifacts in WebGL 2.0 and three.js samples' --body ' *)",
+      "Bash(gh pr *)",
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\github\\\\effekseer-test\\\\examples\\\\effekseer\\\\Resources\\\\Sound\")",
+      "PowerShell(Copy-Item \"c:\\\\github\\\\effekseer-test\\\\_tmp_webgl\\\\Resources\\\\Sound\\\\Laser.wav\" \"c:\\\\github\\\\effekseer-test\\\\examples\\\\effekseer\\\\Resources\\\\Sound\\\\Laser.wav\")",
+      "WebFetch(domain:raw.githubusercontent.com)",
+      "Bash(gh api *)",
+      "Bash(python3 -c ' *)",
+      "Bash(python -c ' *)",
+      "PowerShell(Copy-Item \"c:\\\\github\\\\effekseer-test\\\\_tmp_webgl\\\\Resources\\\\Laser02.efk\" \"c:\\\\github\\\\effekseer-test\\\\examples\\\\effekseer\\\\Resources\\\\\")",
+      "PowerShell(Copy-Item \"c:\\\\github\\\\effekseer-test\\\\_tmp_webgl\\\\Resources\\\\Simple_Ring_Shape1.efk\" \"c:\\\\github\\\\effekseer-test\\\\examples\\\\effekseer\\\\Resources\\\\\")",
+      "PowerShell(Copy-Item \"c:\\\\github\\\\effekseer-test\\\\_tmp_webgl\\\\Resources\\\\block.efk\" \"c:\\\\github\\\\effekseer-test\\\\examples\\\\effekseer\\\\Resources\\\\\")",
+      "PowerShell(New-Item -ItemType Directory -Force \"c:\\\\github\\\\effekseer-test\\\\examples\\\\effekseer\\\\Resources\\\\Model\")",
+      "PowerShell(Copy-Item \"c:\\\\github\\\\effekseer-test\\\\_tmp_webgl\\\\Resources\\\\Model\\\\block.efkmodel\" \"c:\\\\github\\\\effekseer-test\\\\examples\\\\effekseer\\\\Resources\\\\Model\\\\\")",
+      "Bash(cp examples/webgl2/laser01/style.css examples/webgl2/laser02/style.css)",
+      "Bash(sed 's|Basic WebGL 2.0|Laser02 - WebGL 2.0|; s|effekseer-webgl.js|../../effekseer/effekseer-webgl.js|' examples/webgl2/laser01/index.html)",
+      "Bash(cat)",
+      "Bash(grep -E \"^examples/[^/]+/[^/]+/?$\")"
+    ],
+    "additionalDirectories": [
+      "c:\\github\\effekseer-test\\_tmp_webgl\\Resources\\Texture"
+    ]
+  }
+}

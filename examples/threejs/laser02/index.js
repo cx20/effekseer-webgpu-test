@@ -25,13 +25,13 @@ function main() {
 
   const gl = renderer.getContext();
 
-  effekseer.initRuntime("../effekseer/effekseer-webgl.wasm", () => {
+  effekseer.initRuntime("../../effekseer/effekseer-webgl.wasm", () => {
     const context = effekseer.createContext();
     context.init(gl);
     context.setRestorationOfStatesFlag(true);
 
     const effect = context.loadEffect(
-      "../effekseer/Resources/Laser01.efk",
+      "../../effekseer/Resources/Laser02.efk",
       1.0,
       () => {
         setStatus("Click to play");
