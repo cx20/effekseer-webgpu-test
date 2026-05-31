@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="380" viewBox="0 0 600 380" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="600" height="380" rx="10" fill="#f6f8fa"/>
+  <text x="300" y="34" text-anchor="middle" font-size="17" font-weight="700" fill="#1f2328">FBO save / restore (WebGL pattern A — PlayCanvas, Filament)</text>
+
+  <!-- Step boxes -->
+  <!-- 1 -->
+  <rect x="120" y="56" width="360" height="46" rx="8" fill="#ddf4ff" stroke="#54aeff" stroke-width="1.5"/>
+  <text x="300" y="78" text-anchor="middle" font-size="13" fill="#0a3069">renderer.render()</text>
+  <text x="300" y="94" text-anchor="middle" font-size="11" fill="#0a3069">framework draws to its internal FBO</text>
+
+  <!-- 2 -->
+  <rect x="120" y="120" width="360" height="46" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+  <text x="300" y="142" text-anchor="middle" font-size="13" fill="#1f2328">savedFBO = getParameter(FRAMEBUFFER_BINDING)</text>
+  <text x="300" y="158" text-anchor="middle" font-size="11" fill="#57606a">remember the framework's bound FBO</text>
+
+  <!-- 3 -->
+  <rect x="120" y="184" width="360" height="46" rx="8" fill="#ffffff" stroke="#d0d7de" stroke-width="1.5"/>
+  <text x="300" y="206" text-anchor="middle" font-size="13" fill="#1f2328">bindFramebuffer(null)</text>
+  <text x="300" y="222" text-anchor="middle" font-size="11" fill="#57606a">switch to the canvas default framebuffer</text>
+
+  <!-- 4 -->
+  <rect x="120" y="248" width="360" height="46" rx="8" fill="#ffe8cc" stroke="#fb8500" stroke-width="1.5"/>
+  <text x="300" y="270" text-anchor="middle" font-size="13" fill="#7a3e00">efkContext.draw()</text>
+  <text x="300" y="286" text-anchor="middle" font-size="11" fill="#7a3e00">Effekseer draws effects on top of the scene</text>
+
+  <!-- 5 -->
+  <rect x="120" y="312" width="360" height="46" rx="8" fill="#dafbe1" stroke="#4ac26b" stroke-width="1.5"/>
+  <text x="300" y="334" text-anchor="middle" font-size="13" fill="#1a7f37">bindFramebuffer(savedFBO)</text>
+  <text x="300" y="350" text-anchor="middle" font-size="11" fill="#1a7f37">restore — keeps the framework's FBO tracker in sync</text>
+
+  <!-- arrows between -->
+  <g stroke="#57606a" stroke-width="2" fill="#57606a">
+    <line x1="300" y1="102" x2="300" y2="116"/><polygon points="300,120 295,111 305,111"/>
+    <line x1="300" y1="166" x2="300" y2="180"/><polygon points="300,184 295,175 305,175"/>
+    <line x1="300" y1="230" x2="300" y2="244"/><polygon points="300,248 295,239 305,239"/>
+    <line x1="300" y1="294" x2="300" y2="308"/><polygon points="300,312 295,303 305,303"/>
+  </g>
+
+  <!-- caption -->
+  <text x="540" y="290" text-anchor="end" font-size="11" fill="#cf222e">skip restore →</text>
+  <text x="540" y="305" text-anchor="end" font-size="11" fill="#cf222e">per-frame flicker</text>
+</svg>

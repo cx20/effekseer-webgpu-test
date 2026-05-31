@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="430" viewBox="0 0 760 430" font-family="-apple-system, Segoe UI, Helvetica, Arial, sans-serif">
+  <rect x="0" y="0" width="760" height="430" rx="10" fill="#f6f8fa"/>
+  <text x="380" y="32" text-anchor="middle" font-size="17" font-weight="700" fill="#1f2328">Where the logic and shaders live</text>
+
+  <!-- ===== Layer 1: logic ===== -->
+  <rect x="30" y="52" width="700" height="98" rx="9" fill="#ffffff" stroke="#54aeff" stroke-width="1.5"/>
+  <text x="48" y="76" font-size="13.5" font-weight="700" fill="#0a3069">① Effect logic  (particle simulation)</text>
+
+  <rect x="48" y="86" width="300" height="52" rx="7" fill="#ddf4ff" stroke="#54aeff" stroke-width="1.5"/>
+  <text x="198" y="107" text-anchor="middle" font-size="12" font-weight="600" fill="#0a3069">.efk / BIN_  node tree</text>
+  <text x="198" y="124" text-anchor="middle" font-size="10.5" fill="#0a3069">declarative parameters — NO code</text>
+
+  <text x="372" y="116" font-size="20" fill="#57606a">→</text>
+
+  <rect x="398" y="86" width="314" height="52" rx="7" fill="#eef2f5" stroke="#d0d7de" stroke-width="1.5"/>
+  <text x="555" y="107" text-anchor="middle" font-size="12" font-weight="600" fill="#1f2328">effekseer.wasm  (runtime)</text>
+  <text x="555" y="124" text-anchor="middle" font-size="10.5" fill="#57606a">interprets data &amp; runs the simulation</text>
+
+  <!-- ===== Layer 2: built-in shaders ===== -->
+  <rect x="30" y="160" width="700" height="98" rx="9" fill="#ffffff" stroke="#fb8500" stroke-width="1.5"/>
+  <text x="48" y="184" font-size="13.5" font-weight="700" fill="#7a3e00">② Built-in render shaders  (sprite / ribbon / ring / track / model)</text>
+
+  <rect x="48" y="194" width="320" height="52" rx="7" fill="#ffe8cc" stroke="#fb8500" stroke-width="1.5"/>
+  <text x="208" y="215" text-anchor="middle" font-size="12" font-weight="600" fill="#7a3e00">baked into each renderer</text>
+  <text x="208" y="232" text-anchor="middle" font-size="10.5" fill="#7a3e00">NOT in the effect file</text>
+
+  <text x="392" y="224" font-size="20" fill="#57606a">→</text>
+
+  <rect x="418" y="194" width="142" height="52" rx="7" fill="#eef2f5" stroke="#d0d7de" stroke-width="1.5"/>
+  <text x="489" y="217" text-anchor="middle" font-size="12" fill="#1f2328">RendererGL</text>
+  <text x="489" y="233" text-anchor="middle" font-size="11" font-weight="600" fill="#0a3069">GLSL</text>
+
+  <rect x="570" y="194" width="142" height="52" rx="7" fill="#eef2f5" stroke="#d0d7de" stroke-width="1.5"/>
+  <text x="641" y="217" text-anchor="middle" font-size="12" fill="#1f2328">WebGPU renderer</text>
+  <text x="641" y="233" text-anchor="middle" font-size="11" font-weight="600" fill="#7a3e00">WGSL</text>
+
+  <!-- ===== Layer 3: custom material ===== -->
+  <rect x="30" y="268" width="700" height="120" rx="9" fill="#ffffff" stroke="#4ac26b" stroke-width="1.5"/>
+  <text x="48" y="292" font-size="13.5" font-weight="700" fill="#1a7f37">③ Custom material  (only this layer uses an intermediate format)</text>
+
+  <rect x="48" y="302" width="190" height="66" rx="7" fill="#dafbe1" stroke="#4ac26b" stroke-width="1.5"/>
+  <text x="143" y="324" text-anchor="middle" font-size="12" font-weight="600" fill="#1a7f37">.efkmat  GENE</text>
+  <text x="143" y="341" text-anchor="middle" font-size="10.5" fill="#1a7f37">intermediate shader</text>
+  <text x="143" y="357" text-anchor="middle" font-size="10.5" fill="#1a7f37">$F1$ $TEX_P0$ $UV$ …</text>
+
+  <text x="248" y="340" font-size="20" fill="#57606a">→</text>
+
+  <rect x="276" y="302" width="190" height="66" rx="7" fill="#eef2f5" stroke="#d0d7de" stroke-width="1.5"/>
+  <text x="371" y="328" text-anchor="middle" font-size="12" font-weight="600" fill="#1f2328">MaterialCompiler</text>
+  <text x="371" y="345" text-anchor="middle" font-size="10.5" fill="#57606a">per backend, at load time</text>
+
+  <text x="476" y="340" font-size="20" fill="#57606a">→</text>
+
+  <rect x="504" y="302" width="100" height="66" rx="7" fill="#eef2f5" stroke="#d0d7de" stroke-width="1.5"/>
+  <text x="554" y="332" text-anchor="middle" font-size="12" fill="#1f2328">GLSL</text>
+  <text x="554" y="350" text-anchor="middle" font-size="10" fill="#57606a">(GL backend)</text>
+
+  <rect x="612" y="302" width="100" height="66" rx="7" fill="#eef2f5" stroke="#d0d7de" stroke-width="1.5"/>
+  <text x="662" y="332" text-anchor="middle" font-size="12" fill="#1f2328">WGSL</text>
+  <text x="662" y="350" text-anchor="middle" font-size="10" fill="#57606a">(WebGPU)</text>
+
+  <text x="380" y="412" text-anchor="middle" font-size="11.5" fill="#57606a">Logic = data interpreted by the runtime · Built-in shaders = baked per backend · Material = intermediate, transpiled on load</text>
+</svg>
